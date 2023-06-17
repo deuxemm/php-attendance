@@ -3,6 +3,8 @@ $title = 'Index';
 
 require_once 'includes/header.php';
 require_once 'db/conn.php';
+
+$results = $crud->getSpecialties();
 ?>
 
 <!-- 
@@ -36,13 +38,20 @@ require_once 'db/conn.php';
     <div class="form-group">
         <label for="specialty">Primary Area of Expertise (role)</label>
         <select class="form-control" id="specialty" name="specialty">
-            <option value="2">Other</option>
+            <?php while($r = $results->fetch(PDO::FETCH_ASSOC)) { ?>
+                <option value="<?php echo $r['specialty_id']?>"><?php echo $r['name']; ?></option>
+            <?php } ?>
+
+
+        <!-- rather use PHP (above). This was purely sample code to test/show table & formatting -->
+            <!-- <option value="2">Other</option>
             <option value="3">Cloud Engineer</option>
             <option value="1">DB Admin</option>
             <option value="4">Security</option>
             <option value="5">Software Dev</option>
             <option value="6">SRE</option>
-            <option value="7">Web Admin</option>
+            <option value="7">Web Admin</option> -->
+
         </select>
     </div>
 

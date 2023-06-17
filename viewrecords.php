@@ -28,11 +28,16 @@ $results = $crud->getAttendees();
             <td><?php echo $r['dateofbirth'] ?></td>
             <td><?php echo $r['emailaddress'] ?></td>
             <td><?php echo $r['contactnumber'] ?></td>
-            <td><?php echo $r['specialty_id'] ?></td>
+           <!-- 
+            because we changed - public function getAttendees(),
+            inside of crud.php - we can change this last line to use 'name'
+            instead of 'specialty_id' 
+            -->
+            <td><?php echo $r['name'] ?></td> 
+
         </tr>
     <!-- this next piece of syntx is to close the curly braces above -->
     <?php } ?>
-
 
     <!-- rather use PHP (above). This was purely sample code to test/show table & formatting -->
     <!-- <tr>
