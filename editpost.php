@@ -1,6 +1,6 @@
 <?php
 require_once 'db/conn.php';
-echo 'DB connected successfully';
+
 
 // Get values from post operation
 if (isset($_POST['submit'])) {
@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
     $specialty = $_POST['specialty'];
 
     // Call crud function
-    $result = $crud->editAttendee($id,$fname, $lname, $dob, $email, $contact, $specialty);
+    $result = $crud->editAttendee($id, $fname, $lname, $dob, $email, $contact, $specialty);
     // Redirect to viewrecords.php
     if ($result) {
         header("Location: viewrecords.php");

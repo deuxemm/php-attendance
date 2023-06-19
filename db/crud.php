@@ -53,7 +53,7 @@ class crud
             // Execute statement 
             $stmt->execute();
             return true;
-       
+
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false;
@@ -77,6 +77,22 @@ class crud
         $stmt->execute();
         $result = $stmt->fetch();
         return $result;
+    }
+
+
+    public function deleteAttendee($id)
+    {
+        try {
+            $sql = "DELETE FROM attendee WHERE attendee_id = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindparam(':id', $id);
+            $stmt->execute();
+            return true;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
     }
 
 
