@@ -19,7 +19,6 @@ class crud
             $sql = "INSERT INTO attendee (firstname,lastname,dateofbirth,emailaddress,contactnumber,specialty_id) VALUES (:fname, :lname, :dob, :email, :contact, :specialty)";
             // prepare sql statement for execution
             $stmt = $this->db->prepare($sql);
-
             // bind all placeholders to the actual values (PDO methodology)
             $stmt->bindparam(':fname', $fname);
             $stmt->bindparam(':lname', $lname);
@@ -27,7 +26,7 @@ class crud
             $stmt->bindparam(':email', $email);
             $stmt->bindparam(':contact', $contact);
             $stmt->bindparam(':specialty', $specialty);
-
+            // Execute statement 
             $stmt->execute();
             return true;
 
@@ -37,6 +36,31 @@ class crud
         }
     }
 
+
+    public function editAttendee($id, $fname, $lname, $dob, $email, $contact, $specialty)
+    {
+        try {
+            $sql = "UPDATE `attendee` SET `firstname`=:fname,`lastname`=:lname,`dateofbirth`=:dob,`emailaddress`=:email,`contactnumber`=:contact,`specialty_id`=:specialty WHERE attendee_id = :id ";
+            $stmt = $this->db->prepare($sql);
+            // bind all placeholders to the actual values (PDO methodology)
+            $stmt->bindparam(':id', $id);
+            $stmt->bindparam(':fname', $fname);
+            $stmt->bindparam(':lname', $lname);
+            $stmt->bindparam(':dob', $dob);
+            $stmt->bindparam(':email', $email);
+            $stmt->bindparam(':contact', $contact);
+            $stmt->bindparam(':specialty', $specialty);
+            // Execute statement 
+            $stmt->execute();
+            return true;
+       
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+
     public function getAttendees()
     {
         $sql = "SELECT * FROM `attendee` a inner join specialties s on a.specialty_id = s.specialty_id";
@@ -44,12 +68,26 @@ class crud
         return $result;
     }
 
+
+    public function getAttendeeDetails($id)
+    {
+        $sql = "SELECT * FROM attendee a inner join specialties s on a.specialty_id = s.specialty_id WHERE attendee_id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindparam(':id', $id);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result;
+    }
+
+
     public function getSpecialties()
     {
         $sql = "SELECT * FROM `specialties`";
         $result = $this->db->query($sql);
-        return $result; 
+        return $result;
     }
+
+
 
 }
 ?>

@@ -4,6 +4,7 @@ $title = 'View Records';
 require_once 'includes/header.php';
 require_once 'db/conn.php';
 
+// Get all attendess
 $results = $crud->getAttendees();
 ?>
 
@@ -13,30 +14,50 @@ $results = $crud->getAttendees();
         <th>#</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <!-- design/layout decision - removed these next 3 lines off page  -->
+        <!-- 
         <th>Date of Birth</th>
         <th>Email Address</th>
-        <th>Contact Number</th>
+        <th>Contact Number</th> 
+        -->
         <th>Specialty</th>
+        <th>Actions</th>
     </tr>
 
     <!-- using PHP to dynamically generate a table with a while loop -->
-    <?php while($r = $results->fetch(PDO::FETCH_ASSOC)) { ?>
+    <?php while ($r = $results->fetch(PDO::FETCH_ASSOC)) { ?>
         <tr>
-            <td><?php echo $r['attendee_id'] ?></td>
-            <td><?php echo $r['firstname'] ?></td>
-            <td><?php echo $r['lastname'] ?></td>
-            <td><?php echo $r['dateofbirth'] ?></td>
-            <td><?php echo $r['emailaddress'] ?></td>
-            <td><?php echo $r['contactnumber'] ?></td>
-           <!-- 
+            <td>
+                <?php echo $r['attendee_id'] ?>
+            </td>
+            <td>
+                <?php echo $r['firstname'] ?>
+            </td>
+            <td>
+                <?php echo $r['lastname'] ?>
+            </td>
+            <!-- design/layout decision - removed these  3 lines (as for above)   -->
+            <!--
+            echo $r['dateofbirth']
+            echo $r['emailaddress']
+            echo $r['contactnumber']
+            -->
+
+            <!-- 
             because we changed - public function getAttendees(),
             inside of crud.php - we can change this last line to use 'name'
             instead of 'specialty_id' 
             -->
-            <td><?php echo $r['name'] ?></td> 
+            <td>
+                <?php echo $r['name'] ?>
+            </td>
+            <td>
+                <a href="view.php?id=<?php echo $r['attendee_id'] ?>" class="btn btn-primary">View</a>
+                <a href="edit.php?id=<?php echo $r['attendee_id'] ?>" class="btn btn-warning">Edit</a></td>
 
+            </td>
         </tr>
-    <!-- this next piece of syntx is to close the curly braces above -->
+        <!-- this next piece of syntx is to close the curly braces above -->
     <?php } ?>
 
     <!-- rather use PHP (above). This was purely sample code to test/show table & formatting -->
