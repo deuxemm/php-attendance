@@ -70,7 +70,8 @@ if (!isset($_GET['id'])) {
             <small id="phoneHelp" class="form-text text-muted">We'll never share your number with anyone else.</small>
         </div>
 
-        <button type="submit" name="submit" class="btn btn-success btn-block">Save Changes</button>
+        <a href="viewrecords.php" class="btn btn-secondary">Back to List</a>
+        <button type="submit" name="submit" class="btn btn-success btn">Save Changes</button>
     </form>
 
 <?php } ?>
