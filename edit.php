@@ -11,7 +11,10 @@ $results = $crud->getSpecialties();
 // this result get us the row of data
 // to fill out the rest of the fields (to edit) in our form
 if (!isset($_GET['id'])) {
-    echo 'error';
+    // echo 'error';
+    include 'includes/errormsg.php';
+    // redirect to this page in case of error
+    header("Location: viewrecords.php");
 } else {
     $id = $_GET['id'];
     $attendee = $crud->getAttendeeDetails($id);

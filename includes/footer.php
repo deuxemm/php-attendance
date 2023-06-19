@@ -1,3 +1,6 @@
+<br>
+<br>
+
 <div class="text-center" id="footer">
   <?php echo "<p>Copyright &copy; 2021-" . date("Y") . " deuxeMM.io</p>"; ?>
 </div>

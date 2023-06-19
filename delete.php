@@ -3,7 +3,10 @@ require_once 'db/conn.php';
 
 // First check if the id exists in the DB 
 if (!$_GET['id']) {
-    echo 'error';
+    // echo 'error';
+    include 'includes/errormsg.php';
+    // redirect to this page in case of error
+    header("Location: viewrecords.php");
 } else {
     // Get id values
     $id = $_GET['id'];
@@ -15,7 +18,8 @@ if (!$_GET['id']) {
     if ($result) {
         header("Location: viewrecords.php");
     } else {
-        echo 'error';
+        // echo 'error';
+        include 'includes/errormsg.php';
     }
 
 }

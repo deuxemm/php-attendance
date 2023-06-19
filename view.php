@@ -6,7 +6,8 @@ require_once 'db/conn.php';
 
 // Get attendee by id
 if (!isset($_GET['id'])) {
-    echo "<h3 class='text-danger'>Please check details and try again</h3>";
+    // echo "<h3 class='text-danger'>Please check details and try again</h3>";
+    include 'includes/errormsg.php';
 } else {
     $id = $_GET['id'];
     $result = $crud->getAttendeeDetails($id);
@@ -37,6 +38,11 @@ if (!isset($_GET['id'])) {
             </p>
         </div>
     </div>
+    <br>
+    <a href="viewrecords.php" class="btn btn-info">Back to List</a>
+    <a href="edit.php?id=<?php echo $result['attendee_id'] ?>" class="btn btn-warning">Edit</a>
+    <a onclick="return confirm('DELETE is irreversable - are you sure!?');"
+        href="delete.php?id=<?php echo $result['attendee_id'] ?>" class="btn btn-danger">Delete</a>
 
 <?php } ?>
 

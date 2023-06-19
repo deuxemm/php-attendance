@@ -22,22 +22,22 @@ $results = $crud->getSpecialties();
 <form method="post" action=success.php>
     <div class="form-group">
         <label for="firstname">First Name</label>
-        <input type="text" class="form-control" id="firstname" name="firstname">
+        <input type="text" class="form-control" id="firstname" name="firstname" required>
     </div>
 
     <div class="form-group">
         <label for="lastname">Last Name</label>
-        <input type="text" class="form-control" id="lastname" name="lastname">
+        <input required type="text" class="form-control" id="lastname" name="lastname" required>
     </div>
 
     <div class="form-group">
         <label for="dob">Date of Birth</label>
-        <input type="date" class="form-control" id="dob" name="dob">
+        <input type="date" class="form-control" id="dob" name="dob" required>
     </div>
 
     <div class="form-group">
         <label for="specialty">Primary Area of Expertise (role)</label>
-        <select class="form-control" id="specialty" name="specialty">
+        <select class="form-control" id="specialty" name="specialty" >
             <?php while($r = $results->fetch(PDO::FETCH_ASSOC)) { ?>
                 <option value="<?php echo $r['specialty_id']?>"><?php echo $r['name']; ?></option>
             <?php } ?>
@@ -57,7 +57,7 @@ $results = $crud->getSpecialties();
 
     <div class="form-group">
         <label for="email">Email address</label>
-        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
 

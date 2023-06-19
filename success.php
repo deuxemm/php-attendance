@@ -3,7 +3,7 @@ $title = 'Success';
 require_once 'includes/header.php';
 require_once 'db/conn.php';
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     // extract values from $_POST array
     $fname = $_POST['firstname'];
     $lname = $_POST['lastname'];
@@ -15,10 +15,12 @@ if(isset($_POST['submit'])){
     // call function to insert, then track if isSuccess or not 
     $isSuccess = $crud->insertAttendees($fname, $lname, $dob, $email, $phone, $specialty);
 
-    if($isSuccess){
-        echo '<h2 class="text-center text-success">You Have Been Registered</h2>';
+    if ($isSuccess) {
+        // echo '<h2 class="text-center text-success">You Have Been Registered</h2>';
+        include 'includes/successmsg.php';
     } else {
-        echo '<h2 class="text-center text-danger">There was an error in processing</h2>';
+        // echo '<h2 class="text-center text-danger">There was an error in processing</h2>';
+        include 'includes/errormsg.php';
     }
 
 }
