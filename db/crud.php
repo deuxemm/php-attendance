@@ -26,6 +26,7 @@ class crud
             $stmt->bindparam(':email', $email);
             $stmt->bindparam(':contact', $contact);
             $stmt->bindparam(':specialty', $specialty);
+            
             // Execute statement 
             $stmt->execute();
             return true;
@@ -113,6 +114,23 @@ class crud
         try {
             $sql = "SELECT * FROM `specialties`";
             $result = $this->db->query($sql);
+            return $result;
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+
+    public function getSpecialtyById($id)
+    {
+        try {
+            $sql = "SELECT * FROM `specialties` where specialty_id = :id";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindparam(':id', $id);
+            $stmt->execute();
+            $result = $stmt->fetch();
             return $result;
 
         } catch (PDOException $e) {

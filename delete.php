@@ -1,4 +1,5 @@
 <?php
+require_once 'includes/auth_check.php';
 require_once 'db/conn.php';
 
 // First check if the id exists in the DB 

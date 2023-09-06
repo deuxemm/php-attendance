@@ -1,5 +1,6 @@
 <?php
 
+// DEV
 $host = '127.0.0.1';
 $db = 'attendance_db';
 $user = 'root';
@@ -21,7 +22,9 @@ try {
 }
 
 require_once 'crud.php';
+require_once 'user.php';
 $crud = new crud($pdo);
+$user = new user($pdo);
 
-
+$user->insertUser("something", "somethingelse");
 ?>
